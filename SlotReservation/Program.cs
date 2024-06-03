@@ -10,6 +10,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
 
+builder.Services.AddAvailabilityHttpClient(builder.Configuration);
+
 var app = builder.Build();
 
 app.UseExceptionHandler("/error");
