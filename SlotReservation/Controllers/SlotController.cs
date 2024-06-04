@@ -11,10 +11,12 @@ public class SlotController : ControllerBase
     _availabilityService = availabilityService;
   }
 
-  [HttpGet("availability/{date}")]
-  public async Task<IActionResult> GetAvailability(string date)
+  [HttpGet("availability")]
+  public async Task<IActionResult> GetAvailability(int year, int month, int day)
   {
-    var availability = await _availabilityService.GetAvailability(date);
+    var request = new GetAvailabilityRequest(year, month, day);
+
+    var availability = await _availabilityService.GetAvailability(request);
     
     return Ok(availability);    
   }

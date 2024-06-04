@@ -1,5 +1,5 @@
 public interface IAvailabilityService
 {
-    Task<Availability> GetAvailability(string date);
+    Task<Availability> GetAvailability(GetAvailabilityRequest date);
     Task ReserveSlot(ReservationRequest slot);
 }
