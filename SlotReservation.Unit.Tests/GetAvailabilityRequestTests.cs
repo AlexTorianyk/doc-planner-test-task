@@ -1,6 +1,3 @@
-using Xunit;
-using System;
-
 namespace SlotReservation.Unit.Tests
 {
     public class GetAvailabilityRequestTests

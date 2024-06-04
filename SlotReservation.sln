@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlotReservation", "SlotRese
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlotReservation.Unit.Tests", "SlotReservation.Unit.Tests\SlotReservation.Unit.Tests.csproj", "{0F62FD25-5467-48E0-A542-7594824F876C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlotReservation.Integration.Tests", "SlotReservation.Integration.Tests\SlotReservation.Integration.Tests.csproj", "{09BEE535-47E6-4DD7-813A-F2E8156B5238}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{0F62FD25-5467-48E0-A542-7594824F876C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F62FD25-5467-48E0-A542-7594824F876C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F62FD25-5467-48E0-A542-7594824F876C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09BEE535-47E6-4DD7-813A-F2E8156B5238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BEE535-47E6-4DD7-813A-F2E8156B5238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BEE535-47E6-4DD7-813A-F2E8156B5238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BEE535-47E6-4DD7-813A-F2E8156B5238}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
