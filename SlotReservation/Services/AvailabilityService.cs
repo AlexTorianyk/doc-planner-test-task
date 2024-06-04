@@ -28,7 +28,7 @@ public class AvailabilityService : IAvailabilityService, IScoped
       else
       {
         var errorMessage = await response.Content.ReadAsStringAsync();
-        if(errorMessage is not null)
+        if(!string.IsNullOrEmpty(errorMessage))
         {
           throw new BaseHttpException(errorMessage, response.StatusCode);
         }
