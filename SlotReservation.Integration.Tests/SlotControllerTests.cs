@@ -40,7 +40,7 @@ namespace SlotReservation.Integration.Tests
             {
                 // Arrange
                 var client = _factory.CreateClient();
-                int year = 2024;
+                int year = -1; // This is an invalid year
                 int month = 06;
                 int day = 04;
 

@@ -1,7 +1,7 @@
 // ran into some problems with using DateOnly, so decided to create a separate class, it better encapsulates the Monday only rule too
 public class GetAvailabilityRequest
 {
-    public DateTime Date { get; private set; }
+    public DateTime LatestMonday { get; private set; }
 
     public GetAvailabilityRequest(int year, int month, int day)
     {
@@ -30,16 +30,21 @@ public class GetAvailabilityRequest
             throw new BadRequestException("The provided date is invalid.");
         }
 
-        if (date.DayOfWeek != DayOfWeek.Monday)
+        // Calculate the number of days between the given date and the previous Monday
+        int daysSinceMonday = (int)date.DayOfWeek - (int)DayOfWeek.Monday;
+        
+        // If the given date is before Monday, adjust daysSinceMonday to reflect the previous week
+        if (daysSinceMonday < 0)
         {
-            throw new BadRequestException("The date must be a Monday.");
+            daysSinceMonday += 7;
         }
-
-        Date = date;
+        
+        // Subtract the number of days from the given date to get the Monday of the week
+        LatestMonday = date.AddDays(-daysSinceMonday);
     }
 
     public override string ToString()
     {
-        return Date.ToString("yyyyMMdd");
+        return LatestMonday.ToString("yyyyMMdd");
     }
 }

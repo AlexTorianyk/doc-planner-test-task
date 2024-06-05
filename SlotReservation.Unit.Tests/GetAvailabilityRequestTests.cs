@@ -5,7 +5,7 @@ namespace SlotReservation.Unit.Tests
         public class Constructor : GetAvailabilityRequestTests
         {
             [Fact]
-            public void WhenValidDateIsPassed_ShouldSetDateProperty()
+            public void WhenMondayIsPassed_ShouldReturnThatSameMonday()
             {
                 // Arrange
                 int year = 2024;
@@ -16,19 +16,23 @@ namespace SlotReservation.Unit.Tests
                 var request = new GetAvailabilityRequest(year, month, day);
 
                 // Assert
-                Assert.Equal(new DateTime(year, month, day), request.Date);
+                Assert.Equal(new DateTime(year, month, 03), request.LatestMonday); // The Monday of that week is June 3, 2024
             }
 
+
             [Fact]
-            public void WhenNonMondayIsPassed_ShouldThrowBadRequestException()
+            public void WhenNonMondayIsPassed_ShouldSetDatePropertyToMondayOfThatWeek()
             {
                 // Arrange
                 int year = 2024;
                 int month = 06;
-                int day = 04; // This is not a Monday
+                int day = 05; // This is a Wednesday
 
-                // Act & Assert
-                Assert.Throws<BadRequestException>(() => new GetAvailabilityRequest(year, month, day));
+                // Act
+                var request = new GetAvailabilityRequest(year, month, day);
+
+                // Assert
+                Assert.Equal(new DateTime(year, month, 03), request.LatestMonday); // The Monday of that week is June 3, 2024
             }
 
             [Fact]
@@ -76,14 +80,14 @@ namespace SlotReservation.Unit.Tests
                 // Arrange
                 int year = 2024;
                 int month = 06;
-                int day = 03; // This is a Monday
+                int day = 05; // This is a Wednesday
                 var request = new GetAvailabilityRequest(year, month, day);
 
                 // Act
                 var result = request.ToString();
 
                 // Assert
-                Assert.Equal("20240603", result);
+                Assert.Equal("20240603", result); // The Monday of that week is June 3, 2024
             }
         }
     }
