@@ -20,4 +20,12 @@ public class SlotController : ControllerBase
     
     return Ok(availability);    
   }
+
+  [HttpPost("reserve")]
+  public async Task<IActionResult> ReserveSlot([FromBody]ReservationRequest slot)
+  {
+    await _availabilityService.ReserveSlot(slot);
+
+    return Ok();
+  }
 }
