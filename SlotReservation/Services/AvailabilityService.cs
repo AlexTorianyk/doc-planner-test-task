@@ -2,13 +2,15 @@
 using System.Text;
 using System.Text.Json;
 
-public class AvailabilityService : IAvailabilityService, IScoped
+public class AvailabilityService : IAvailabilityService, ITransient
 {
     private readonly IHttpClientFactory _clientFactory;
+    private readonly IReservationRequestValidator validator;
 
-    public AvailabilityService(IHttpClientFactory clientFactory)
+    public AvailabilityService(IHttpClientFactory clientFactory, IReservationRequestValidator validator)
     {
         _clientFactory = clientFactory;
+        this.validator = validator;
     }
 
     public async Task<Availability> GetAvailability(GetAvailabilityRequest date)
@@ -44,6 +46,17 @@ public class AvailabilityService : IAvailabilityService, IScoped
     {
         var json = JsonSerializer.Serialize(slot);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var getAvailabilityRequest = new GetAvailabilityRequest(slot.Start.Year, slot.Start.Month, slot.Start.Day);
+
+        var availability = await GetAvailability(getAvailabilityRequest);
+
+        var (isValid, failureReason) = validator.ValidateReservationRequest(slot, availability);
+
+        if (!isValid)
+        {
+          throw new BadRequestException(failureReason);
+        }
 
         using var client = _clientFactory.CreateClient("AvailabilityService");
 
