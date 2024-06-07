@@ -1,4 +1,4 @@
-// ran into some problems with using DateOnly, so decided to create a separate class, it better encapsulates the Monday only rule too
+// ran into some problems with using DateOnly, so decided to create a separate class. Easier for me to implement the automatic switch to Monday as well
 public class GetAvailabilityRequest
 {
     public DateTime LatestMonday { get; private set; }

@@ -1,7 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddDependencies();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,4 +23,5 @@ app.MapHealthChecks("/health");
 
 app.Run();
 
+// Needed for WebApplicationFactory e2e tests
 public partial class Program { }

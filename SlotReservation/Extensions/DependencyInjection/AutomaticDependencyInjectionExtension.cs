@@ -1,5 +1,6 @@
 using System.Reflection;
 
+// Scutor is a library which adds classes to DI based on the interfaces they implement. I like this approach because you have the information about the dependencies in the classes themselves instead of having to go to the Program.cs file to see what is being added to the DI container.
 public static class AutomaticDependencyInjectionExtension
     {
         public static void AddDependencies(this IServiceCollection services)

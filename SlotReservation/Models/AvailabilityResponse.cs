@@ -7,6 +7,7 @@ public class AvailabilityResponse{
         Facility = availability.Facility;
         Schedule = new List<WorkDayResponse>();
 
+        // I don't particularly like this, but I wanted to add information about the day of the week
         var days = new List<(DayOfWeek, WorkDay?)>
         {
             (DayOfWeek.Monday, availability.Monday),
@@ -28,7 +29,9 @@ public class AvailabilityResponse{
                     WorkPeriod = day.WorkPeriod,
                     BusySlots = day.BusySlots
                 };
+
                 workDay.CalculateAvailableSlots(availability.SlotDurationMinutes);
+
                 Schedule.Add(workDay);
             }
         }

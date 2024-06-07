@@ -1,3 +1,4 @@
+// registering a named HttpClient for the AvailabilityService
 public static class AvailabilityHttpClientExtension
 {
     public static void AddAvailabilityHttpClient(this IServiceCollection services, IConfiguration configuration)

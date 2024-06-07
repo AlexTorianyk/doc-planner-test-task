@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class ErrorController : ControllerBase
 {
+    // make this endpoint hidden from swagger
     [ApiExplorerSettings(IgnoreApi = true)]
     [Route("/error")]
     public IActionResult HandleError()

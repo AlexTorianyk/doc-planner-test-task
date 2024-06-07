@@ -2,6 +2,9 @@ namespace SlotReservation.Unit.Tests
 {
     public class AvailabilityResponseTests
     {
+      public class Constructor : AvailabilityResponseTests{
+
+      
         [Fact]
         public void WhenAvailabilityIsProvided_ShouldSetFacility()
         {
@@ -37,5 +40,6 @@ namespace SlotReservation.Unit.Tests
             Assert.NotNull(response.Schedule);
             Assert.Equal(2, response.Schedule.Count);
         }
+      }
     }
 }

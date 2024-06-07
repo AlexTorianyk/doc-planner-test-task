@@ -6,6 +6,7 @@ namespace SlotReservation.Unit.Tests
 {
     public class WorkDayResponseTests
     {
+      public class CalculateAvailableSlots : WorkDayResponseTests{
         [Fact]
         public void WhenWorkPeriodIsProvided_ShouldCalculateAvailableSlots()
         {
@@ -57,5 +58,6 @@ namespace SlotReservation.Unit.Tests
             Assert.NotNull(workDayResponse.AvailableSlots);
             Assert.DoesNotContain(workDayResponse.AvailableSlots, slot => slot.Start.ToTimeSpan().Hours == 10);
         }
+      }
     }
 }

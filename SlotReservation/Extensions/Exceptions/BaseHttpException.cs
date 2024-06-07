@@ -1,5 +1,6 @@
 using System.Net;
 
+// Decision is explained in the README.md file
 public class BaseHttpException : Exception
 {
   public HttpStatusCode StatusCode { get; set; }
