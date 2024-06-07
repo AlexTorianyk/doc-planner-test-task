@@ -17,8 +17,10 @@ public class SlotController : ControllerBase
     var request = new GetAvailabilityRequest(year, month, day);
 
     var availability = await _availabilityService.GetAvailability(request);
+
+    var availabilityResponse = new AvailabilityResponse(availability);
     
-    return Ok(availability);    
+    return Ok(availabilityResponse);    
   }
 
   [HttpPost("reserve")]

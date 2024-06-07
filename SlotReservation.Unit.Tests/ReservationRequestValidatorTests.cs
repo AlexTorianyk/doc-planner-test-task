@@ -160,7 +160,7 @@ namespace SlotReservation.Unit.Tests
           Wednesday = new WorkDay
           {
             WorkPeriod = new WorkPeriod { StartHour = 9, EndHour = 17, LunchStartHour = 11, LunchEndHour = 12 },
-            BusySlots = new List<BusySlot> { new BusySlot { Start = reservationStart, End = reservationStart.AddHours(1) } }
+            BusySlots = new List<TimeSlot> { new TimeSlot { Start = reservationStart, End = reservationStart.AddHours(1) } }
           }
         };
         var validator = new ReservationRequestValidator();
