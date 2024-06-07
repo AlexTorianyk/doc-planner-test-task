@@ -7,6 +7,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddAvailabilityHttpClient(builder.Configuration);
 
@@ -19,6 +20,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();
 
