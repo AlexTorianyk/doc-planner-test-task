@@ -1,8 +1,8 @@
 public class ReservationRequestValidator : ITransient, IReservationRequestValidator
 {
-  public (bool isValid, string failureReason) ValidateReservationRequest(ReservationRequest reservationRequest, Availability availability)
+    public (bool isValid, string failureReason) ValidateReservationRequest(ReservationRequest reservationRequest, Availability availability)
     {
-        if(reservationRequest.FacilityId != availability.Facility.FacilityId)
+        if (reservationRequest.FacilityId != availability.Facility.FacilityId)
         {
             return (false, ReservationRequestValidationFailureReason.InvalidFacilityId);
         }
@@ -29,11 +29,11 @@ public class ReservationRequestValidator : ITransient, IReservationRequestValida
             return (false, ReservationRequestValidationFailureReason.DuringLunchTime);
         }
 
-        if(IsOutOfWorkingHours(reservationRequest, requestedWorkDay))
+        if (IsOutOfWorkingHours(reservationRequest, requestedWorkDay))
         {
             return (false, ReservationRequestValidationFailureReason.OutOfWorkingHours);
         }
-        
+
         if (IsSlotAlreadyReserved(reservationRequest, requestedWorkDay))
         {
             return (false, ReservationRequestValidationFailureReason.SlotAlreadyReserved);
@@ -44,18 +44,18 @@ public class ReservationRequestValidator : ITransient, IReservationRequestValida
 
     private bool IsSlotAlreadyReserved(ReservationRequest reservationRequest, WorkDay workDay)
     {
-      if (workDay.BusySlots is null || !workDay.BusySlots.Any())
-      {
-        return false;
-      }
-      return workDay.BusySlots.Any(slot => 
-        slot.Start < reservationRequest.End && 
-        slot.End > reservationRequest.Start);
+        if (workDay.BusySlots is null || !workDay.BusySlots.Any())
+        {
+            return false;
+        }
+        return workDay.BusySlots.Any(slot =>
+          slot.Start < reservationRequest.End &&
+          slot.End > reservationRequest.Start);
     }
 
     private bool IsOutOfWorkingHours(ReservationRequest reservationRequest, WorkDay requestedWorkDay)
     {
-      return reservationRequest.Start.Hour < requestedWorkDay.WorkPeriod.StartHour || reservationRequest.End.Hour > requestedWorkDay.WorkPeriod.EndHour;
+        return reservationRequest.Start.Hour < requestedWorkDay.WorkPeriod.StartHour || reservationRequest.End.Hour > requestedWorkDay.WorkPeriod.EndHour;
     }
 
     private static bool IsSlotDurationValid(ReservationRequest reservationRequest, Availability availability)
@@ -96,8 +96,8 @@ public class ReservationRequestValidator : ITransient, IReservationRequestValida
     {
         TimeSpan lunchStart = new TimeSpan(requestedWorkDay.WorkPeriod.LunchStartHour, 0, 0);
         TimeSpan lunchEnd = new TimeSpan(requestedWorkDay.WorkPeriod.LunchEndHour, 0, 0);
-    
-        return reservationRequest.End.TimeOfDay > lunchStart && 
+
+        return reservationRequest.End.TimeOfDay > lunchStart &&
                reservationRequest.Start.TimeOfDay < lunchEnd;
     }
 }

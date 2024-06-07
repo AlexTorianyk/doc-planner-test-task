@@ -32,13 +32,13 @@ public class GetAvailabilityRequest
 
         // Calculate the number of days between the given date and the previous Monday
         int daysSinceMonday = (int)date.DayOfWeek - (int)DayOfWeek.Monday;
-        
+
         // If the given date is before Monday, adjust daysSinceMonday to reflect the previous week
         if (daysSinceMonday < 0)
         {
             daysSinceMonday += 7;
         }
-        
+
         // Subtract the number of days from the given date to get the Monday of the week
         LatestMonday = date.AddDays(-daysSinceMonday);
     }

@@ -15,31 +15,31 @@ public class AvailabilityService : IAvailabilityService, ITransient
 
     public async Task<Availability> GetAvailability(GetAvailabilityRequest date)
     {
-      using var client = _clientFactory.CreateClient("AvailabilityService");
+        using var client = _clientFactory.CreateClient("AvailabilityService");
 
-      var response = await client.GetAsync($"GetWeeklyAvailability/{date}");
+        var response = await client.GetAsync($"GetWeeklyAvailability/{date}");
 
-      if (response.IsSuccessStatusCode)
-      {
-        var availability = await response.Content.ReadFromJsonAsync<Availability>();
-
-        if (availability is null)
+        if (response.IsSuccessStatusCode)
         {
-          throw new NotFoundException("Availability not found");
-        }
+            var availability = await response.Content.ReadFromJsonAsync<Availability>();
 
-        return availability;
-      }
-      else
-      {
-        var errorMessage = await response.Content.ReadAsStringAsync();
-        if(!string.IsNullOrEmpty(errorMessage))
+            if (availability is null)
+            {
+                throw new NotFoundException("Availability not found");
+            }
+
+            return availability;
+        }
+        else
         {
-          throw new BaseHttpException(errorMessage, response.StatusCode);
-        }
+            var errorMessage = await response.Content.ReadAsStringAsync();
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new BaseHttpException(errorMessage, response.StatusCode);
+            }
 
-        throw new BaseHttpException("Availability HTTP Service error", response.StatusCode);
-      }
+            throw new BaseHttpException("Availability HTTP Service error", response.StatusCode);
+        }
     }
 
     public async Task ReserveSlot(ReservationRequest slot)
@@ -55,7 +55,7 @@ public class AvailabilityService : IAvailabilityService, ITransient
 
         if (!isValid)
         {
-          throw new BadRequestException(failureReason);
+            throw new BadRequestException(failureReason);
         }
 
         using var client = _clientFactory.CreateClient("AvailabilityService");
@@ -64,17 +64,17 @@ public class AvailabilityService : IAvailabilityService, ITransient
 
         if (response.IsSuccessStatusCode)
         {
-          return;
+            return;
         }
         else
         {
-          var errorMessage = await response.Content.ReadAsStringAsync();
-          if (!string.IsNullOrEmpty(errorMessage))
-          {
-            throw new BaseHttpException(errorMessage, response.StatusCode);
-          }
+            var errorMessage = await response.Content.ReadAsStringAsync();
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new BaseHttpException(errorMessage, response.StatusCode);
+            }
 
-          throw new BaseHttpException("Reservation HTTP Service error", response.StatusCode);
+            throw new BaseHttpException("Reservation HTTP Service error", response.StatusCode);
         }
     }
 }

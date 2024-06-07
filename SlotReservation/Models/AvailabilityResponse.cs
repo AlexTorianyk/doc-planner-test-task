@@ -1,4 +1,5 @@
-public class AvailabilityResponse{
+public class AvailabilityResponse
+{
     public Facility Facility { get; set; }
     public List<WorkDayResponse> Schedule { get; set; }
 

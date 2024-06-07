@@ -41,7 +41,7 @@ namespace SlotReservation.Unit.Tests
                 // Arrange
                 int year = -1; // This is an invalid year
                 int month = 06;
-                int day = 03; 
+                int day = 03;
 
                 // Act & Assert
                 Assert.Throws<BadRequestException>(() => new GetAvailabilityRequest(year, month, day));
@@ -53,7 +53,7 @@ namespace SlotReservation.Unit.Tests
                 // Arrange
                 int year = 2024;
                 int month = 13; // This is an invalid month
-                int day = 03; 
+                int day = 03;
 
                 // Act & Assert
                 Assert.Throws<BadRequestException>(() => new GetAvailabilityRequest(year, month, day));
