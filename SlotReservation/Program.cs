@@ -7,6 +7,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddHealthChecks();
 
 builder.Services.AddAvailabilityHttpClient(builder.Configuration);
