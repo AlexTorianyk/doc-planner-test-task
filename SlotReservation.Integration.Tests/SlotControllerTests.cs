@@ -93,7 +93,12 @@ namespace SlotReservation.Integration.Tests
                 FacilityId = "123", // Set the FacilityId property
                 Start = new DateTime(2024, 06, 03, 10, 0, 0),
                 End = new DateTime(2024, 06, 03, 9, 0, 0), // End time is before start time, which is invalid,
-                Patient = new Patient()
+                Patient = new Patient
+                {
+                    Name = "John Doe",
+                    Email = "johndoe@example.com",
+                    Phone = "1234567890"
+                }
             };
             var json = JsonSerializer.Serialize(reservationRequest);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

@@ -15,7 +15,12 @@ namespace SlotReservation.Unit.Tests
             FacilityId = facilityId,
             Start = start.Value,
             End = end.Value,
-            Patient = new Patient()
+            Patient = new Patient
+            {
+              Name = "John Doe",
+              Email = "johndoe@example.com",
+              Phone = "1234567890"
+            }
           };
         }
 
